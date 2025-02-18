@@ -916,9 +916,10 @@ TCAN4x5x_MCAN_ReadNextFIFO(TCAN4x5x_MCAN_FIFO_Enum FIFODefine, TCAN4x5x_MCAN_RX_
 
     // Start a burst read for the number of data bytes we require at the data payload area of the MRAM
     // The equation below ensures that we will always read the correct number of words since the divide truncates any remainders, and we need a ceil()-like function
+    i = 0;
     if (elementSize > 0) {
         AHB_READ_BURST_START(startAddress + 8, (elementSize + 3) >> 2);
-        i = 0;  // Used to count the number of bytes we have read.
+          // Used to count the number of bytes we have read.
         while (i < elementSize) {
             if ((i % 4) == 0) {
                 readData = AHB_READ_BURST_READ();
@@ -1021,9 +1022,10 @@ TCAN4x5x_MCAN_ReadRXBuffer(uint8_t bufIndex, TCAN4x5x_MCAN_RX_Header *header, ui
 
     // Start a burst read for the number of data bytes we require at the data payload area of the MRAM
     // The equation below ensures that we will always read the correct number of words since the divide truncates any remainders, and we need a ceil()-like function
+    i = 0;
     if (elementSize > 0) {
         AHB_READ_BURST_START(startAddress + 8, (elementSize + 3) >> 2);
-        i = 0;  // Used to count the number of bytes we have read.
+          // Used to count the number of bytes we have read.
         while (i < elementSize) {
             if ((i % 4) == 0) {
                 readData = AHB_READ_BURST_READ();
